@@ -16,7 +16,7 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <StackPanel Orientation="Horizontal">
-        <DataGrid x:Name="Table" ItemsSource="{Binding Books}" SelectedItem="{Binding SelectedBook}"/>
+        <DataGrid ItemsSource="{Binding Books}" CanUserAddRows="False" SelectedItem="{Binding SelectedBook}"/>
         <StackPanel>
             <Button Command="{Binding AddCommand}" Margin="10" Content="Add book"/>
             <Button Command="{Binding RemoveCommand}" Margin="10" Content="Remove book"/>

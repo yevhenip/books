@@ -69,6 +69,7 @@
             <SubType>Code</SubType>
         </Compile>
         <Compile Include="ViewModel\BooksViewModel.cs" />
+        <Compile Include="ViewModel\BookViewModel.cs" />
         <Compile Include="View\Books.xaml.cs">
           <DependentUpon>Books.xaml</DependentUpon>
           <SubType>Code</SubType>

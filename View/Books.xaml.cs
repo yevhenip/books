@@ -4,8 +4,7 @@
     {
         public MainWindow()
         {
-            InitializeComponent(); 
-            Table.CanUserAddRows = false;
+            InitializeComponent();
         }
     }
 }

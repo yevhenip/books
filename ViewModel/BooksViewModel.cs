@@ -1,25 +1,23 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using books.Annotations;
-using books.Model;
 using books.Utility;
 using Newtonsoft.Json;
 
 namespace books.ViewModel
 {
-    public sealed class BooksViewModel:INotifyPropertyChanged
+    public class BooksViewModel : INotifyPropertyChanged
     {
-        private Book _selectedbook;
-        private ObservableCollection<Book> _books;
+        private BookViewModel _selectedbook;
+        private ObservableCollection<BookViewModel> _books;
         public ICommand AddCommand { get; set; }
         public ICommand RemoveCommand { get; set; }
         public ICommand SaveCommand { get; set; }
-        
-        public Book SelectedBook
+
+        public BookViewModel SelectedBook
         {
             get => _selectedbook;
             set
@@ -28,7 +26,8 @@ namespace books.ViewModel
                 RaisePropertyChanged();
             }
         }
-        public ObservableCollection<Book> Books
+
+        public ObservableCollection<BookViewModel> Books
         {
             get => _books;
             set
@@ -38,14 +37,15 @@ namespace books.ViewModel
             }
         }
 
-        public void GetFromJson()
+        private void GetFromJson()
         {
             if (!File.Exists("source.json"))
             {
                 File.WriteAllText("source.json", @"[]");
             }
+
             var jsn = File.ReadAllText("source.json");
-            _books = JsonConvert.DeserializeObject<ObservableCollection<Book>>(jsn);
+            _books = JsonConvert.DeserializeObject<ObservableCollection<BookViewModel>>(jsn);
         }
 
         public BooksViewModel()
@@ -56,39 +56,12 @@ namespace books.ViewModel
 
         private void LoadCommands()
         {
-            AddCommand = new CustomCommand(AddBook, CanAddBook);
-            RemoveCommand = new CustomCommand(RemoveBook, CanRemoveBook);
-            SaveCommand = new CustomCommand(SaveBook, CanSaveBook);
-        }
-
-        private bool CanSaveBook(object obj)
-        {
-            return true;
-        }
-
-        private void SaveBook(object obj)
-        {
-            File.WriteAllText("source.json", JsonConvert.SerializeObject(Books, Formatting.Indented));
-        }
-
-        private bool CanRemoveBook(object obj)
-        {
-            return SelectedBook != null;
-        }
-
-        private void RemoveBook(object obj)
-        {
-            Books.Remove(SelectedBook);
-        }
-
-        private bool CanAddBook(object obj)
-        {
-            return true;
-        }
-
-        private void AddBook(object obj)
-        {
-            Books.Add(new Book());
+            AddCommand = new CustomCommand(obj => _books.Add(new BookViewModel()), obj => true);
+            RemoveCommand = new CustomCommand(obj => _books.Remove(SelectedBook), obj => SelectedBook != null);
+            SaveCommand =
+                new CustomCommand(
+                    obj => File.WriteAllText("source.json", JsonConvert.SerializeObject(_books, Formatting.Indented)),
+                    obj => true);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
