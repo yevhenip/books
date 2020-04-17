@@ -21,8 +21,8 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <DataGrid Grid.Column="0" ColumnWidth="*" ItemsSource="{Binding Books}" CanUserAddRows="False" SelectedItem="{Binding SelectedBook}"/>
-        <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
+        <DataGrid Grid.Column="0" ColumnWidth="*" ItemsSource="{Binding Books}" CanUserAddRows="True" CanUserDeleteRows="True" SelectedItem="{Binding SelectedBook}"/>
+        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="Black"/>
         <StackPanel Grid.Column="2">
             <Button Command="{Binding AddCommand}" Margin="10" Content="Add book"/>
             <Button Command="{Binding RemoveCommand}" Margin="10" Content="Remove book"/>
