@@ -15,11 +15,17 @@
             <i:InvokeCommandAction Command="{Binding SaveCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    <StackPanel Orientation="Horizontal">
-        <DataGrid ItemsSource="{Binding Books}" CanUserAddRows="False" SelectedItem="{Binding SelectedBook}"/>
-        <StackPanel>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <DataGrid Grid.Column="0" ColumnWidth="*" ItemsSource="{Binding Books}" CanUserAddRows="False" SelectedItem="{Binding SelectedBook}"/>
+        <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
+        <StackPanel Grid.Column="2">
             <Button Command="{Binding AddCommand}" Margin="10" Content="Add book"/>
             <Button Command="{Binding RemoveCommand}" Margin="10" Content="Remove book"/>
         </StackPanel>
-    </StackPanel>
+    </Grid>
 </Window>
