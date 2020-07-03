@@ -7,7 +7,6 @@ C:\Users\Jackson\RiderProjects\books\books\obj\Debug\books_MarkupCompile.cache
 C:\Users\Jackson\RiderProjects\books\books\obj\Debug\books.g.resources
 C:\Users\Jackson\RiderProjects\books\books\obj\Debug\books.Properties.Resources.resources
 C:\Users\Jackson\RiderProjects\books\books\obj\Debug\books.csproj.GenerateResource.cache
-C:\Users\Jackson\RiderProjects\books\books\obj\Debug\books.csproj.CoreCompileInputs.cache
 C:\Users\Jackson\RiderProjects\books\books\obj\Debug\books.exe
 C:\Users\Jackson\RiderProjects\books\books\obj\Debug\books.pdb
 C:\Users\Jackson\RiderProjects\books\books\bin\Debug\Newtonsoft.Json.dll

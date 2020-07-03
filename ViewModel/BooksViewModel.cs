@@ -1,15 +1,12 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.IO;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
-using books.Annotations;
 using books.Utility;
 using Newtonsoft.Json;
 
 namespace books.ViewModel
 {
-    public class BooksViewModel : INotifyPropertyChanged
+    public class BooksViewModel : BaseViewModel
     {
         private BookViewModel _selectedbook;
         private ObservableCollection<BookViewModel> _books;
@@ -37,7 +34,7 @@ namespace books.ViewModel
             }
         }
 
-        private void GetFromJson()
+        private void GetBooks()
         {
             if (!File.Exists("source.json"))
             {
@@ -50,7 +47,7 @@ namespace books.ViewModel
 
         public BooksViewModel()
         {
-            GetFromJson();
+            GetBooks();
             LoadCommands();
         }
 
@@ -62,14 +59,6 @@ namespace books.ViewModel
                 new CustomCommand(
                     obj => File.WriteAllText("source.json", JsonConvert.SerializeObject(_books, Formatting.Indented)),
                     obj => true);
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        private void RaisePropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

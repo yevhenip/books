@@ -1,18 +1,17 @@
-﻿using System.ComponentModel;
-using books.Model;
+﻿using books.Model;
 
 namespace books.ViewModel
 {
-    public class BookViewModel:INotifyPropertyChanged
+    public class BookViewModel: BaseViewModel
     {
-        private Book _book;
+        private readonly Book _book;
         public string Name
         {
             get => _book.Name;
             set
             {
                 _book.Name = value;
-                RaisePropertyChanged("Name");
+                RaisePropertyChanged();
             }
         }
 
@@ -22,7 +21,7 @@ namespace books.ViewModel
             set
             {
                 _book.Author = value;
-                RaisePropertyChanged("Author");
+                RaisePropertyChanged();
             }
         }
 
@@ -32,7 +31,7 @@ namespace books.ViewModel
             set
             {
                 _book.Pages = value;
-                RaisePropertyChanged("Pages");
+                RaisePropertyChanged();
             }
         }
 
@@ -42,7 +41,7 @@ namespace books.ViewModel
             set
             {
                 _book.Price = value;
-                RaisePropertyChanged("Price");
+                RaisePropertyChanged();
             }
         }
 
@@ -63,12 +62,6 @@ namespace books.ViewModel
             Author = author;
             Pages = pages;
             Price = price;
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void RaisePropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
